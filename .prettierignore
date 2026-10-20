@@ -1,0 +1,4 @@
+# Specs, README, and changelog are hand-written Markdown; keep their layout as written.
+*.md
+package-lock.json
+dist/

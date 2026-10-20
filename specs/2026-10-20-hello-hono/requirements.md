@@ -23,8 +23,8 @@ In scope:
 
 Out of scope (later phases):
 
-- `npm run dev` / `tsx watch` (Phase 3)
-- Tailwind (Phase 6). The hand-written CSS stays until then
+- `npm run dev` / `tsx watch` (the "Dev server" step of roadmap Phase 2)
+- Tailwind (Phase 3). The hand-written CSS stays until then
 - Navigation links, other pages, a styled 404 page
 
 ## Decisions
@@ -41,7 +41,7 @@ Out of scope (later phases):
 | Header | Site name "AgentClinic" linking to `/` | Brand on every page |
 | Main | `<main>` wrapping the page content | One landmark for page content |
 | Footer | A short playful line and the year | "Delight matters" |
-| CSS file | `static/styles.css`, plain mobile-first CSS with color, spacing, and tap-target tokens on `:root` | Steve's "attractive site" starts now; Tailwind replaces it in Phase 6 |
+| CSS file | `static/styles.css`, plain mobile-first CSS with color, spacing, and tap-target tokens on `:root` | Steve's "attractive site" starts now; Tailwind replaces it in Phase 4 |
 | Viewport | `<meta name="viewport" content="width=device-width, initial-scale=1">` in `Layout` | Every page renders at device width on phones |
 | Mobile-first CSS | Base styles for 320px; `@media (min-width: 40rem)` and `(min-width: 48rem)` add more padding and larger text; no `max-width` queries | Shared breakpoints from the tech stack, matching Tailwind's `sm`/`md` |
 | Fluid layout | Content capped at `48rem` and centered; side padding `1rem` on phones, `1.5rem` from `40rem`; `<h1>` sized with `clamp(2rem, 8vw, 3rem)` | Readable line length on desktop, no wasted space on phones |
@@ -49,7 +49,7 @@ Out of scope (later phases):
 | Overflow safety | `overflow-wrap: break-word` on `body`; images and media capped at `max-width: 100%` | No horizontal scrolling, even with long words or future images |
 | Serving CSS | `serveStatic({ root: "./" })` from `@hono/node-server/serve-static` on `/static/*` | Hono's standard static middleware for Node |
 | Linking CSS | `<link rel="stylesheet" href="/static/styles.css">` in the layout's `<head>` | One stylesheet for every page |
-| Running TSX | `tsx` as a dev dependency; `"start": "tsx src/index.ts"` | Node 24's type stripping can't handle JSX. Phase 3 adds `tsx watch` for `npm run dev` |
+| Running TSX | `tsx` as a dev dependency; `"start": "tsx src/index.ts"` | Node 24's type stripping can't handle JSX. The "Dev server" step of roadmap Phase 2 adds `tsx watch` for `npm run dev` |
 | Import paths | Relative imports use the real file extension (`./components/Layout.tsx`), with `"rewriteRelativeImportExtensions": true` in `tsconfig.json` | Imports name the file that actually exists, and a future build to `dist/` rewrites them to `.js` |
 | 404 | Hono's default `404 Not Found` | Same behavior as Phase 1 |
 

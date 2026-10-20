@@ -12,11 +12,11 @@ You need [Node.js 24 LTS](https://nodejs.org/) or newer.
 
 ```sh
 npm install
-npm start
+npm start      # or: npm run dev, which restarts on every change
 ```
 
-Run the tests with `npm test`.
-
 Then open http://localhost:3000. Set `PORT` to use a different port.
+
+Run the tests with `npm test`, or every check (type-check, lint, format, and tests) with `npm run check`.
 
 The mission, tech stack, and roadmap live in [`specs/`](specs/).

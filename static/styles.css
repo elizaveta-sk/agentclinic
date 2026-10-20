@@ -21,7 +21,12 @@
   --max-width: 48rem;
   --tap-target: 44px;
 
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
   line-height: 1.6;
   color: var(--color-text);
   background: var(--color-bg);

@@ -22,7 +22,7 @@ We use [Hono](https://hono.dev) on Node.js.
 
 | Concern | Choice | Why |
 |---|---|---|
-| Language | TypeScript (strict mode) | Type safety across the whole app |
+| Language | TypeScript 6.0 (strict mode) | Type safety across the whole app. Pinned to 6.0 because typescript-eslint doesn't support TypeScript 7 yet; move up when it does |
 | Runtime | Node.js (current LTS) | Stable and widely deployed |
 | Web framework | Hono + `@hono/node-server` | Server-rendered pages and form handling |
 | Views | Hono JSX (`hono/jsx`) | Typed components rendered to HTML on the server |
@@ -34,9 +34,11 @@ We use [Hono](https://hono.dev) on Node.js.
 | Running TypeScript | `tsx` (`npm start`), `tsx watch` (`npm run dev`) | Runs TypeScript and JSX directly, with no build step; Node's own type stripping can't handle JSX |
 | Unit / route tests | Vitest + `app.request()`, run with `npm test` | Fast, TypeScript-native, no running server needed |
 | End-to-end tests | Playwright | Real-browser coverage of key flows |
-| Lint / format | ESLint + Prettier | Consistent code |
+| Lint | ESLint with typescript-eslint's `recommended` rules (`eslint.config.js`), run with `npm run lint` | Catches real bugs without noise |
+| Format | Prettier with default settings, run with `npm run format`; Markdown is left as written | Consistent code with no style debates |
 | Package manager | npm | Default and widely known |
-| CI | GitHub Actions | Runs type-check, lint, and tests on every push |
+| All checks | `npm run check` | Runs type-check, lint, format check, and tests in one command |
+| CI | GitHub Actions | Runs `npm run check` on every push |
 
 ## Testing and validation
 
@@ -58,7 +60,7 @@ The web UI follows responsive design, mobile first.
 
 - **Viewport.** Every page includes `<meta name="viewport" content="width=device-width, initial-scale=1">` (it lives in `Layout`).
 - **Mobile first.** Base styles target the narrowest screen. Wider screens are enhanced with `@media (min-width: …)` queries; there are no `max-width` media queries.
-- **Breakpoints.** `40rem` (640px), `48rem` (768px), and `64rem` (1024px). These match Tailwind's `sm`, `md`, and `lg`, so the move to Tailwind in Phase 7 keeps the same breakpoints.
+- **Breakpoints.** `40rem` (640px), `48rem` (768px), and `64rem` (1024px). These match Tailwind's `sm`, `md`, and `lg`, so the move to Tailwind in Phase 4 keeps the same breakpoints.
 - **Supported widths.** 320px to 1920px. No horizontal scrolling at any width; wide content such as tables scrolls inside its own container.
 - **Fluid sizing.** Use `rem` and `%` rather than fixed pixel widths, `clamp()` for headings, and a maximum content width for readable line lengths.
 - **Touch friendly.** Links and buttons have a tap target of at least 44×44px.

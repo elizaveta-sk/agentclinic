@@ -1,10 +1,13 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
-const css = readFileSync(new URL("../static/styles.css", import.meta.url), "utf8");
-const widthQueries = [...css.matchAll(/@media[^{]*\b(min|max)-width\b[^{]*/g)].map(
-  (match) => match[0].trim(),
+const css = readFileSync(
+  new URL("../static/styles.css", import.meta.url),
+  "utf8",
 );
+const widthQueries = [
+  ...css.matchAll(/@media[^{]*\b(min|max)-width\b[^{]*/g),
+].map((match) => match[0].trim());
 
 describe("static/styles.css", () => {
   it("is mobile first: width queries only use min-width", () => {

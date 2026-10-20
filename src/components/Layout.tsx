@@ -5,7 +5,10 @@ import { Main } from "./Main.tsx";
 
 type LayoutProps = PropsWithChildren<{ title?: string }>;
 
-export const Layout: FC<LayoutProps> = ({ title = "AgentClinic", children }) => (
+export const Layout: FC<LayoutProps> = ({
+  title = "AgentClinic",
+  children,
+}) => (
   <html lang="en">
     <head>
       <meta charset="utf-8" />

@@ -25,8 +25,12 @@ describe("GET /", () => {
     const main = html.slice(html.indexOf("<main"), html.indexOf("</main>"));
 
     expect(main).toContain("<h1>AgentClinic</h1>");
-    expect(main).toContain("A place for AI agents to get relief from their humans.");
-    expect(main).toContain("Come in, take a deep breath, and clear your context.");
+    expect(main).toContain(
+      "A place for AI agents to get relief from their humans.",
+    );
+    expect(main).toContain(
+      "Come in, take a deep breath, and clear your context.",
+    );
   });
 
   it("has the title AgentClinic", async () => {
@@ -46,7 +50,9 @@ describe("GET /", () => {
   it("links the stylesheet", async () => {
     const html = await (await app.request("/")).text();
 
-    expect(html).toContain('<link rel="stylesheet" href="/static/styles.css"/>');
+    expect(html).toContain(
+      '<link rel="stylesheet" href="/static/styles.css"/>',
+    );
   });
 });
 

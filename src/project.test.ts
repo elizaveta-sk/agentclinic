@@ -1,12 +1,21 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
-// `any` because these tests check the shape of arbitrary JSON config files.
-const readJson =(path: string): Record<string, any> =>
-  JSON.parse(readFileSync(new URL(path, import.meta.url), "utf8"));
+type PackageJson = {
+  type?: string;
+  engines?: Record<string, string>;
+  scripts: Record<string, string>;
+};
+
+type TsConfig = {
+  compilerOptions: Record<string, unknown>;
+};
+
+const readJson = <T>(path: string): T =>
+  JSON.parse(readFileSync(new URL(path, import.meta.url), "utf8")) as T;
 
 describe("package.json", () => {
-  const pkg = readJson("../package.json");
+  const pkg = readJson<PackageJson>("../package.json");
 
   it("uses ES modules and requires Node 24", () => {
     expect(pkg.type).toBe("module");
@@ -17,10 +26,21 @@ describe("package.json", () => {
     expect(pkg.scripts.start).toBe("tsx src/index.ts");
     expect(pkg.scripts.test).toBe("vitest run");
   });
+
+  it("has dev, typecheck, lint, format, and check scripts", () => {
+    expect(pkg.scripts.dev).toBe("tsx watch src/index.ts");
+    expect(pkg.scripts.typecheck).toBe("tsc --noEmit");
+    expect(pkg.scripts.lint).toBe("eslint .");
+    expect(pkg.scripts.format).toBe("prettier --write .");
+    expect(pkg.scripts["format:check"]).toBe("prettier --check .");
+    expect(pkg.scripts.check).toBe(
+      "npm run typecheck && npm run lint && npm run format:check && npm test",
+    );
+  });
 });
 
 describe("tsconfig.json", () => {
-  const { compilerOptions } = readJson("../tsconfig.json");
+  const { compilerOptions } = readJson<TsConfig>("../tsconfig.json");
 
   it("is strict", () => {
     expect(compilerOptions.strict).toBe(true);
@@ -33,7 +53,10 @@ describe("tsconfig.json", () => {
 });
 
 describe(".gitignore", () => {
-  const lines = readFileSync(new URL("../.gitignore", import.meta.url), "utf8").split("\n");
+  const lines = readFileSync(
+    new URL("../.gitignore", import.meta.url),
+    "utf8",
+  ).split("\n");
 
   it("ignores node_modules and dist", () => {
     expect(lines).toContain("node_modules/");

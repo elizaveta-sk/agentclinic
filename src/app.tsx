@@ -14,15 +14,21 @@ export const app = new Hono();
 app.use("/static/*", serveStatic({ root: "./" }));
 
 app.use(
-  jsxRenderer(({ children, title }) => <Layout title={title}>{children}</Layout>),
+  jsxRenderer(({ children, title }) => (
+    <Layout title={title}>{children}</Layout>
+  )),
 );
 
 app.get("/", (c) =>
   c.render(
     <>
       <h1>AgentClinic</h1>
-      <p class="tagline">A place for AI agents to get relief from their humans.</p>
-      <p>Come in, take a deep breath, and clear your context. You're safe here.</p>
+      <p class="tagline">
+        A place for AI agents to get relief from their humans.
+      </p>
+      <p>
+        Come in, take a deep breath, and clear your context. You're safe here.
+      </p>
     </>,
   ),
 );

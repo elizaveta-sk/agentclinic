@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { Header } from "./Header.tsx";
+import { Header, navLinks } from "./Header.tsx";
 
 describe("Header", () => {
   const html = (<Header />).toString();
@@ -11,5 +11,16 @@ describe("Header", () => {
 
   it("links the site name to the home page", () => {
     expect(html).toMatch(/<a [^>]*href="\/"[^>]*>AgentClinic<\/a>/);
+  });
+
+  it("links to every section in the main nav", () => {
+    expect(html).toContain('<nav class="site-nav" aria-label="Main">');
+    for (const link of navLinks) {
+      expect(html).toContain(`<a href="${link.href}">${link.label}</a>`);
+    }
+  });
+
+  it("includes the Agents link", () => {
+    expect(navLinks).toContainEqual({ href: "/agents", label: "Agents" });
   });
 });

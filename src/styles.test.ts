@@ -29,6 +29,11 @@ describe("static/styles.css", () => {
 
   it("gives links a 44px tap target", () => {
     expect(css).toContain("--tap-target: 44px");
-    expect(css).toMatch(/\.site-name \{[^}]*min-height: var\(--tap-target\)/);
+    for (const selector of [".site-name", ".site-nav a", ".card-link"]) {
+      const block = new RegExp(
+        `${selector.replace(".", "\\.")} \\{[^}]*min-height: var\\(--tap-target\\)`,
+      );
+      expect(css).toMatch(block);
+    }
   });
 });

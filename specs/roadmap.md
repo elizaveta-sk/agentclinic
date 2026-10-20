@@ -29,7 +29,7 @@ Every phase that adds or changes UI builds it responsive from the start, followi
 - ✅ **Phase 11: Agent list.** Add a page listing all agents.
 - ✅ **Phase 12: Agent detail.** Add a page for a single agent.
 - ✅ **Phase 13: Not found.** Show a friendly 404 page for an unknown agent.
-- **Phase 14: Nav link.** Add an "Agents" link to the layout.
+- ✅ **Phase 14: Nav link.** Add an "Agents" link to the layout.
 
 ## Ailments
 

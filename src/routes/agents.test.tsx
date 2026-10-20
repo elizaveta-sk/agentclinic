@@ -55,9 +55,14 @@ describe("GET /agents/:slug", () => {
     expect(html).toContain('<a href="/agents">← All agents</a>');
   });
 
-  it("returns 404 for an unknown agent", async () => {
-    const { res } = await page("/agents/no-such-agent");
+  it("returns a friendly 404 for an unknown agent", async () => {
+    const { res, html } = await page("/agents/no-such-agent");
 
     expect(res.status).toBe(404);
+    expect(html).toContain("<title>Agent not found · AgentClinic</title>");
+    expect(html).toContain("We couldn&#39;t find that agent");
+    expect(html).toContain(
+      '<a class="button" href="/agents">See all agents</a>',
+    );
   });
 });

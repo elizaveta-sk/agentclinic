@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { NotFound } from "../components/NotFound.tsx";
 import { db } from "../db.ts";
 
 export const agents = new Hono();
@@ -37,7 +38,11 @@ agents.get("/:slug", async (c) => {
   });
 
   if (!agent) {
-    return c.notFound();
+    c.status(404);
+    return c.render(
+      <NotFound thing="agent" backHref="/agents" backLabel="See all agents" />,
+      { title: "Agent not found · AgentClinic" },
+    );
   }
 
   return c.render(

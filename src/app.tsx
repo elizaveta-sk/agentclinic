@@ -2,6 +2,7 @@ import { serveStatic } from "@hono/node-server/serve-static";
 import { Hono } from "hono";
 import { jsxRenderer } from "hono/jsx-renderer";
 import { Layout } from "./components/Layout.tsx";
+import { agents } from "./routes/agents.tsx";
 
 declare module "hono" {
   interface ContextRenderer {
@@ -32,3 +33,5 @@ app.get("/", (c) =>
     </>,
   ),
 );
+
+app.route("/agents", agents);

@@ -1,6 +1,9 @@
 import type { FC } from "hono/jsx";
 
-export const navLinks = [{ href: "/agents", label: "Agents" }];
+export const navLinks = [
+  { href: "/agents", label: "Agents" },
+  { href: "/ailments", label: "Ailments" },
+];
 
 export const Header: FC = () => (
   <header class="site-header">

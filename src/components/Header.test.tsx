@@ -20,7 +20,8 @@ describe("Header", () => {
     }
   });
 
-  it("includes the Agents link", () => {
+  it("includes the Agents and Ailments links", () => {
     expect(navLinks).toContainEqual({ href: "/agents", label: "Agents" });
+    expect(navLinks).toContainEqual({ href: "/ailments", label: "Ailments" });
   });
 });

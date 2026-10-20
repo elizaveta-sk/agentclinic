@@ -7,4 +7,8 @@ describe("db", () => {
 
     expect(Number(rows[0]?.ok)).toBe(1);
   });
+
+  it("has an agents table", async () => {
+    await expect(db.agent.count()).resolves.toBeGreaterThanOrEqual(0);
+  });
 });

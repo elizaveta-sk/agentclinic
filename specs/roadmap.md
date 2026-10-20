@@ -24,7 +24,7 @@ Every phase that adds or changes UI builds it responsive from the start, followi
 
 ## Agents
 
-- **Phase 9: Agent model.** Add the `Agent` model and a migration.
+- ✅ **Phase 9: Agent model.** Add the `Agent` model and a migration.
 - **Phase 10: Seed agents.** Seed a few agents.
 - **Phase 11: Agent list.** Add a page listing all agents.
 - **Phase 12: Agent detail.** Add a page for a single agent.

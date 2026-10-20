@@ -4,6 +4,8 @@ High-level implementation order, in very small phases. Each phase adds one thing
 
 Every phase that adds or changes UI builds it responsive from the start, following "Responsive design" in `specs/tech-stack.md`: mobile first, and checked at 320px, 768px, and 1280px wide.
 
+**Status (2026-10-20):** The MVP (Phases 6–29, see `specs/2026-10-20-mvp/`) is in progress on the `mvp` branch. Phases 6–18 are done: the database, agent pages, and ailment pages. Work paused before **Phase 19**, linking agents to their ailments. Phases 3–5 come after the MVP.
+
 ## Foundation
 
 - ✅ **Phase 1: Project init.** Create `package.json`, a strict `tsconfig.json`, a `.gitignore`, and a minimal AgentClinic home page served with `node:http`.

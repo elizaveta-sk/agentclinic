@@ -33,7 +33,7 @@ Every phase that adds or changes UI builds it responsive from the start, followi
 
 ## Ailments
 
-- **Phase 15: Ailment model.** Add the `Ailment` model and a migration.
+- ✅ **Phase 15: Ailment model.** Add the `Ailment` model and a migration.
 - **Phase 16: Seed ailments.** Seed ailments (e.g. "context-window exhaustion", "hallucination anxiety").
 - **Phase 17: Ailment list.** Add a page listing ailments.
 - **Phase 18: Ailment detail.** Add a page for a single ailment.

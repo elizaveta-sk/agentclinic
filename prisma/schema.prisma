@@ -14,3 +14,10 @@ model Agent {
   role String
   bio  String
 }
+
+model Ailment {
+  id          Int    @id @default(autoincrement())
+  slug        String @unique
+  name        String
+  description String
+}

@@ -11,4 +11,8 @@ describe("db", () => {
   it("has an agents table", async () => {
     await expect(db.agent.count()).resolves.toBeGreaterThanOrEqual(0);
   });
+
+  it("has an ailments table", async () => {
+    await expect(db.ailment.count()).resolves.toBeGreaterThanOrEqual(0);
+  });
 });

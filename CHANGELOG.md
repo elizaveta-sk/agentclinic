@@ -2,9 +2,15 @@
 
 All notable changes to this project, newest first.
 
-<!-- changelog-last-commit: 4fcfd97b6d401f66c945f63a91618510fa509f3b -->
+<!-- changelog-last-commit: 98dccde090e7b5f6204d6be1ab5bef84ed5b4aae -->
 
 ## 2026-10-20
+
+- Added agent pages: `/agents` lists every agent as a card, and each agent has their own page with their role and bio.
+- Added ailment pages: `/ailments` lists every ailment, and each has its own page with a description. Six ailments are seeded, from context-window exhaustion to apology overload.
+- Added main navigation with "Agents" and "Ailments" links; it wraps on small screens and every link is easy to tap.
+- Unknown agents and ailments now get a friendly "We couldn't find that…" page with a way back, instead of a bare error.
+- List pages use a card grid that shows one, two, or three columns depending on screen width.
 
 - Started the MVP, the clinic catalog: a spec for a database plus linked pages for agents, ailments, and therapies (roadmap Phases 6–29).
 - Added a SQLite database through Prisma 7.10; `npm run setup` creates and seeds it in one step, and `npm run seed` resets the demo data.

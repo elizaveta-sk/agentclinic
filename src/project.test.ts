@@ -34,8 +34,14 @@ describe("package.json", () => {
     expect(pkg.scripts.format).toBe("prettier --write .");
     expect(pkg.scripts["format:check"]).toBe("prettier --check .");
     expect(pkg.scripts.check).toBe(
-      "npm run typecheck && npm run lint && npm run format:check && npm test",
+      "npm run db:generate && npm run typecheck && npm run lint && npm run format:check && npm test",
     );
+  });
+
+  it("has database scripts", () => {
+    expect(pkg.scripts.postinstall).toBe("prisma generate");
+    expect(pkg.scripts["db:generate"]).toBe("prisma generate");
+    expect(pkg.scripts["db:migrate"]).toBe("prisma migrate dev");
   });
 });
 
@@ -61,5 +67,10 @@ describe(".gitignore", () => {
   it("ignores node_modules and dist", () => {
     expect(lines).toContain("node_modules/");
     expect(lines).toContain("dist/");
+  });
+
+  it("ignores SQLite databases and the generated Prisma client", () => {
+    expect(lines).toContain("*.db");
+    expect(lines).toContain("src/generated/");
   });
 });

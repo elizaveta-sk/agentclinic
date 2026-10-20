@@ -2,3 +2,4 @@
 *.md
 package-lock.json
 dist/
+src/generated/

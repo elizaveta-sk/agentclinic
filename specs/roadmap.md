@@ -19,7 +19,7 @@ Every phase that adds or changes UI builds it responsive from the start, followi
 ## Database
 
 - ✅ **Phase 6: Prisma setup.** Add Prisma with SQLite and an empty schema.
-- **Phase 7: DB client.** Add a shared Prisma client module.
+- ✅ **Phase 7: DB client.** Add a shared Prisma client module.
 - **Phase 8: Seed script.** Add an empty seed script and an `npm run seed` command.
 
 ## Agents

@@ -117,6 +117,22 @@ iframe {
   color: var(--color-muted);
 }
 
+.prose {
+  max-width: 40rem;
+}
+
+.breadcrumb {
+  margin: 0 0 var(--space-1);
+}
+
+.breadcrumb a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-target);
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
 .empty {
   padding: var(--space-3);
   border: 1px dashed var(--color-border);

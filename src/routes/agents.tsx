@@ -30,3 +30,25 @@ agents.get("/", async (c) => {
     { title: "Agents · AgentClinic" },
   );
 });
+
+agents.get("/:slug", async (c) => {
+  const agent = await db.agent.findUnique({
+    where: { slug: c.req.param("slug") },
+  });
+
+  if (!agent) {
+    return c.notFound();
+  }
+
+  return c.render(
+    <>
+      <p class="breadcrumb">
+        <a href="/agents">← All agents</a>
+      </p>
+      <h1>{agent.name}</h1>
+      <p class="lead">{agent.role}</p>
+      <p class="prose">{agent.bio}</p>
+    </>,
+    { title: `${agent.name} · AgentClinic` },
+  );
+});

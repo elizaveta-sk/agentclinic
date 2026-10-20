@@ -35,3 +35,29 @@ describe("GET /agents", () => {
     }
   });
 });
+
+describe("GET /agents/:slug", () => {
+  const agent = agents[0]!;
+
+  it("shows the agent's name, role, and bio", async () => {
+    const { res, html } = await page(`/agents/${agent.slug}`);
+
+    expect(res.status).toBe(200);
+    expect(html).toContain(`<title>${agent.name} · AgentClinic</title>`);
+    expect(html).toContain(`<h1>${agent.name}</h1>`);
+    expect(html).toContain(agent.role);
+    expect(html).toContain(agent.bio);
+  });
+
+  it("links back to the agent list", async () => {
+    const { html } = await page(`/agents/${agent.slug}`);
+
+    expect(html).toContain('<a href="/agents">← All agents</a>');
+  });
+
+  it("returns 404 for an unknown agent", async () => {
+    const { res } = await page("/agents/no-such-agent");
+
+    expect(res.status).toBe(404);
+  });
+});

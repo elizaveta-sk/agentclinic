@@ -31,7 +31,7 @@ We use [Hono](https://hono.dev) on Node.js.
 | Database | SQLite | A single file with no server to install or run, ideal for courses and booth demos |
 | ORM | Prisma | Typed queries, migrations, and seeding |
 | Validation | Zod + `@hono/zod-validator` | One schema validates form posts and types the handler |
-| Dev server | `tsx watch` | Runs TypeScript directly and restarts on change |
+| Running TypeScript | `tsx` (`npm start`), `tsx watch` (`npm run dev`) | Runs TypeScript and JSX directly, with no build step; Node's own type stripping can't handle JSX |
 | Unit / route tests | Vitest + `app.request()` | Fast, TypeScript-native, no running server needed |
 | End-to-end tests | Playwright | Real-browser coverage of key flows |
 | Lint / format | ESLint + Prettier | Consistent code |

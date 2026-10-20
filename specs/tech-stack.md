@@ -1,0 +1,50 @@
+# Tech Stack
+
+Server-side TypeScript. Pages are rendered as HTML on the server and sent to the browser; there is no client-side app framework.
+
+## Framework: Hono
+
+We use [Hono](https://hono.dev) on Node.js.
+
+- **Server-side TypeScript.** Routes, rendering, and data access all run on the server, with types throughout.
+- **Built-in JSX rendering.** Pages are typed components rendered to HTML with `c.render()` and a shared layout (`jsxRenderer`), so we don't need a separate template language or React.
+- **Popular and reliable.** Hono is widely used, well maintained, and built on Web Standards (`Request`/`Response`).
+- **Easy to test.** `app.request()` runs a request through the app without starting a server, so route tests are fast unit tests.
+
+**Alternatives considered:**
+
+- **Express**: the most familiar choice, but it's older and its TypeScript support is bolted on.
+- **Fastify**: fast and well typed, but it has no built-in HTML rendering.
+- **NestJS**: popular, but too heavy for an app this size.
+- **Next.js**: a strong choice for full-stack TypeScript, but it builds around a React client app, which is more than this site needs.
+
+## Stack
+
+| Concern | Choice | Why |
+|---|---|---|
+| Language | TypeScript (strict mode) | Type safety across the whole app |
+| Runtime | Node.js (current LTS) | Stable and widely deployed |
+| Web framework | Hono + `@hono/node-server` | Server-rendered pages and form handling |
+| Views | Hono JSX (`hono/jsx`) | Typed components rendered to HTML on the server |
+| Styling | Tailwind CSS (CLI build) | Attractive, responsive pages without a front-end framework |
+| Interactivity | Plain HTML forms; small inline scripts only where needed | Works in every modern browser with no build step for client code |
+| Database | SQLite | A single file with no server to install or run, ideal for courses and booth demos |
+| ORM | Prisma | Typed queries, migrations, and seeding |
+| Validation | Zod + `@hono/zod-validator` | One schema validates form posts and types the handler |
+| Dev server | `tsx watch` | Runs TypeScript directly and restarts on change |
+| Unit / route tests | Vitest + `app.request()` | Fast, TypeScript-native, no running server needed |
+| End-to-end tests | Playwright | Real-browser coverage of key flows |
+| Lint / format | ESLint + Prettier | Consistent code |
+| Package manager | npm | Default and widely known |
+| CI | GitHub Actions | Runs type-check, lint, and tests on every push |
+
+## Browser support
+
+Current evergreen browsers only: Chrome, Edge, Firefox, and Safari. No legacy polyfills.
+
+## Conventions
+
+- Strict TypeScript: no `any` without a comment explaining why.
+- All rendering happens on the server. Pages use standard links and form posts, and each form post ends in a redirect (POST → redirect → GET).
+- Routes are grouped by feature (`agents`, `ailments`, `therapies`, `appointments`, `dashboard`), with each group in its own Hono sub-app mounted with `app.route()`.
+- Every phase on the roadmap ends with passing type-check, lint, and tests.

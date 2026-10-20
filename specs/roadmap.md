@@ -4,8 +4,8 @@ High-level implementation order, in very small phases. Each phase adds one thing
 
 ## Foundation
 
-- ✅ **Phase 1: Project init.** Create `package.json`, a strict `tsconfig.json`, and a `.gitignore`.
-- **Phase 2: Hello Hono.** Add Hono and `@hono/node-server`; the home route returns plain text.
+- ✅ **Phase 1: Project init.** Create `package.json`, a strict `tsconfig.json`, a `.gitignore`, and a minimal AgentClinic home page served with `node:http`.
+- **Phase 2: Hello Hono.** Add Hono and `@hono/node-server`; serve the home page with Hono instead of `node:http`.
 - **Phase 3: Dev server.** Add `tsx watch` and an `npm run dev` script.
 - **Phase 4: JSX layout.** Add a shared layout with `jsxRenderer`; the home page renders HTML.
 - **Phase 5: Vitest.** Add Vitest with one passing route test using `app.request()`.

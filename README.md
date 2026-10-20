@@ -12,6 +12,9 @@ You need [Node.js 24 LTS](https://nodejs.org/) or newer.
 
 ```sh
 npm install
+npm start
 ```
+
+Then open http://localhost:3000. Set `PORT` to use a different port.
 
 The mission, tech stack, and roadmap live in [`specs/`](specs/).

@@ -21,17 +21,27 @@ See `requirements.md` for scope and decisions, and `validation.md` for the merge
 ## 4. tsconfig.json
 
 1. Create `tsconfig.json` with `strict: true` and the extra strictness flags from `requirements.md`.
-2. Set `module`/`moduleResolution` to `NodeNext` and `target` to `ES2024`.
+2. Set `module`/`moduleResolution` to `NodeNext`, `target` to `ES2024`, and `types` to `["node"]`.
 3. Set `jsx: "react-jsx"` and `jsxImportSource: "hono/jsx"`.
 4. Set `rootDir: "src"`, `outDir: "dist"`, `include: ["src"]`, and `skipLibCheck: true`.
+5. Set `erasableSyntaxOnly: true` and `verbatimModuleSyntax: true` so the code stays runnable with Node's type stripping.
 
-## 5. README
+## 5. Minimal home page
+
+1. Create `src/index.ts` that starts a `node:http` server on `PORT` (default `3000`) and logs the URL.
+2. On `GET /`, respond `200` with `Content-Type: text/html; charset=utf-8` and a minimal HTML page: `<title>AgentClinic</title>`, an `<h1>AgentClinic</h1>`, the tagline, and one playful welcome line.
+3. On any other path, respond `404 Not Found` as plain text.
+4. Add `"start": "node src/index.ts"` to `package.json` scripts.
+5. Run `npx tsc --noEmit` and fix any errors.
+
+## 6. README
 
 1. Add a "Getting started" section to `README.md` below the stakeholder input.
-2. List the prerequisite (Node.js 24 LTS) and the first command (`npm install`).
-3. Point readers to `specs/` for the mission, tech stack, and roadmap.
+2. List the prerequisite (Node.js 24 LTS) and the commands `npm install` and `npm start`.
+3. Say the home page is at http://localhost:3000.
+4. Point readers to `specs/` for the mission, tech stack, and roadmap.
 
-## 6. Wrap up
+## 7. Wrap up
 
 1. Mark Phase 1 done in `specs/roadmap.md`.
 2. Run through `validation.md`.

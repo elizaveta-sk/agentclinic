@@ -17,7 +17,7 @@ AgentClinic is a teaching and demo project. It's built for:
 |---|---|---|
 | Mary (engineering) | A reliable site on a popular TypeScript stack, with a dashboard for agents and staff | Type-checked code, automated tests in CI, dashboards for both roles |
 | Susan (product) | Features about agents, ailments, therapies, and booking appointments | Each of these works end to end, from data to UI |
-| Steve (marketing) | An attractive site that works well in a modern browser | Polished, responsive design that looks good in current evergreen browsers |
+| Steve (marketing) | An attractive site that works well in a modern browser | Polished, responsive design that looks good in current evergreen browsers on phones, tablets, and desktops |
 
 ## Principles
 
@@ -25,6 +25,7 @@ AgentClinic is a teaching and demo project. It's built for:
 2. **Boring and reliable.** Choose mainstream tools over clever ones, so the audience can focus on the workflow instead of the stack.
 3. **Delight matters.** The clinic should feel warm and a little playful, never clinical. A fun theme keeps a booth crowd watching.
 4. **Specs first.** Every change starts from these specs. Update the spec, then the code.
+5. **Every screen.** The web UI follows responsive design. Every page works on a phone held at a conference booth, a student's laptop, and a big demo monitor, from 320px wide upward. Responsiveness is built into each feature as it's made, not added at the end.
 
 ## Out of scope (for now)
 

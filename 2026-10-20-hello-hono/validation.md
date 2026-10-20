@@ -39,6 +39,16 @@ Checks marked 🧪 are covered by Vitest tests and verified by `npm test` (see "
 - [x] 🧪 `GET /static/styles.css` returns `200` with `Content-Type: text/css`. (`src/app.test.tsx` › serves the stylesheet as CSS)
 - [ ] In a modern browser, the page shows the header, content, and footer with the styles applied.
 
+## Responsive design
+
+- [x] 🧪 Every page sets `<meta name="viewport" content="width=device-width, initial-scale=1">`. (`src/app.test.tsx` › sets the responsive viewport)
+- [x] 🧪 The stylesheet is mobile first: width media queries only use `min-width`, at the shared breakpoints. (`src/styles.test.ts`)
+- [x] 🧪 Images and media are capped at `max-width: 100%`. (`src/styles.test.ts` › keeps media inside its container)
+- [x] 🧪 The header link has a 44px tap target. (`src/styles.test.ts` › gives links a 44px tap target)
+- [x] At 320px wide, all text wraps and nothing scrolls horizontally. (Checked in headless Chrome inside a 320px iframe.)
+- [x] At 768px and 1280px wide, content is centered with a readable line length. (Checked with headless Chrome screenshots.)
+- [ ] On a real phone or in a browser's device mode, the page looks right and the header link is easy to tap.
+
 ## Specs
 
 - [x] `specs/roadmap.md` reflects the folded phases and marks Phase 2 done.

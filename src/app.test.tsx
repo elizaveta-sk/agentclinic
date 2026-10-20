@@ -35,6 +35,14 @@ describe("GET /", () => {
     expect(html).toContain("<title>AgentClinic</title>");
   });
 
+  it("sets the responsive viewport", async () => {
+    const html = await (await app.request("/")).text();
+
+    expect(html).toContain(
+      '<meta name="viewport" content="width=device-width, initial-scale=1"/>',
+    );
+  });
+
   it("links the stylesheet", async () => {
     const html = await (await app.request("/")).text();
 

@@ -17,6 +17,7 @@ In scope:
 - The layout applied to every page with `jsxRenderer`
 - The existing home page content rendered through the layout
 - A hand-written CSS file, served as a static file and linked from the layout's `<head>`
+- A responsive, mobile-first layout and stylesheet that works from 320px wide upward (see "Responsive design" in `specs/tech-stack.md`)
 - Running the app with `tsx` (Node can't run JSX on its own)
 - Vitest tests for every automatable check in `validation.md`, run with `npm test`
 
@@ -40,7 +41,12 @@ Out of scope (later phases):
 | Header | Site name "AgentClinic" linking to `/` | Brand on every page |
 | Main | `<main>` wrapping the page content | One landmark for page content |
 | Footer | A short playful line and the year | "Delight matters" |
-| CSS file | `static/styles.css`, plain CSS with color and spacing tokens on `:root` | Steve's "attractive site" starts now; Tailwind replaces it in Phase 6 |
+| CSS file | `static/styles.css`, plain mobile-first CSS with color, spacing, and tap-target tokens on `:root` | Steve's "attractive site" starts now; Tailwind replaces it in Phase 6 |
+| Viewport | `<meta name="viewport" content="width=device-width, initial-scale=1">` in `Layout` | Every page renders at device width on phones |
+| Mobile-first CSS | Base styles for 320px; `@media (min-width: 40rem)` and `(min-width: 48rem)` add more padding and larger text; no `max-width` queries | Shared breakpoints from the tech stack, matching Tailwind's `sm`/`md` |
+| Fluid layout | Content capped at `48rem` and centered; side padding `1rem` on phones, `1.5rem` from `40rem`; `<h1>` sized with `clamp(2rem, 8vw, 3rem)` | Readable line length on desktop, no wasted space on phones |
+| Tap targets | The header's site-name link is at least 44px tall | Easy to tap on a phone |
+| Overflow safety | `overflow-wrap: break-word` on `body`; images and media capped at `max-width: 100%` | No horizontal scrolling, even with long words or future images |
 | Serving CSS | `serveStatic({ root: "./" })` from `@hono/node-server/serve-static` on `/static/*` | Hono's standard static middleware for Node |
 | Linking CSS | `<link rel="stylesheet" href="/static/styles.css">` in the layout's `<head>` | One stylesheet for every page |
 | Running TSX | `tsx` as a dev dependency; `"start": "tsx src/index.ts"` | Node 24's type stripping can't handle JSX. Phase 3 adds `tsx watch` for `npm run dev` |

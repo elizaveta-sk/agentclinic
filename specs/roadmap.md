@@ -2,6 +2,8 @@
 
 High-level implementation order, in very small phases. Each phase adds one thing and leaves the app running with type-check, lint, and tests passing.
 
+Every phase that adds or changes UI builds it responsive from the start, following "Responsive design" in `specs/tech-stack.md`: mobile first, and checked at 320px, 768px, and 1280px wide.
+
 ## Foundation
 
 - ✅ **Phase 1: Project init.** Create `package.json`, a strict `tsconfig.json`, a `.gitignore`, and a minimal AgentClinic home page served with `node:http`.
@@ -9,7 +11,7 @@ High-level implementation order, in very small phases. Each phase adds one thing
 - **Phase 3: Dev server.** Add `tsx watch` and an `npm run dev` script.
 - ✅ **Phase 4: Vitest.** Back every automatable `validation.md` check with a Vitest test (routes via `app.request()`, one test file per component, project config), so `npm test` passes.
 - **Phase 5: Lint and format.** Add ESLint and Prettier with `npm run lint` and `npm run format` scripts.
-- **Phase 6: Tailwind build.** Add the Tailwind CLI build that compiles a stylesheet.
+- **Phase 6: Tailwind build.** Add the Tailwind CLI build that compiles a stylesheet, keeping the mobile-first breakpoints.
 - **Phase 7: Tailwind stylesheet.** Replace `static/styles.css` with the compiled Tailwind output.
 - **Phase 8: CI.** Add a GitHub Actions workflow that runs type-check, lint, and tests.
 
@@ -73,8 +75,8 @@ High-level implementation order, in very small phases. Each phase adds one thing
 - **Phase 46: Landing features.** Add a section showcasing ailments and therapies.
 - **Phase 47: Navigation.** Make the site header and navigation consistent.
 - **Phase 48: Design pass.** Make cards, buttons, and forms look consistent.
-- **Phase 49: Responsive.** Check and fix layouts at mobile widths.
-- **Phase 50: Playwright setup.** Add Playwright with one smoke test.
+- **Phase 49: Responsive audit.** Re-check every page at 320px, 768px, and 1280px wide and fix any regressions.
+- **Phase 50: Playwright setup.** Add Playwright with one smoke test, run at a mobile and a desktop viewport.
 - **Phase 51: Booking E2E.** Add an end-to-end test for booking an appointment.
 - **Phase 52: Dashboard E2E.** Add an end-to-end test for the dashboards.
 

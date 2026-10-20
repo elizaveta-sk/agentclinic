@@ -31,20 +31,24 @@ Each component lives in its own file under `src/components/`.
 
 ## 5. CSS file
 
-1. Create `static/styles.css` with color and spacing tokens on `:root`, a readable body font, and styles for the header, main, and footer.
-2. Serve it with `serveStatic({ root: "./" })` on `/static/*`.
-3. Link it from the layout's `<head>` with `<link rel="stylesheet" href="/static/styles.css">`.
+1. Create `static/styles.css` with color, spacing, and tap-target tokens on `:root`, a readable body font, and styles for the header, main, and footer.
+2. Write it mobile first: base styles for a 320px screen, then `@media (min-width: 40rem)` and `@media (min-width: 48rem)` for more padding and larger text. No `max-width` queries.
+3. Keep it fluid: content capped at `48rem` and centered, `clamp()` for the `<h1>`, `overflow-wrap: break-word` on `body`, media capped at `max-width: 100%`, and a 44px minimum height on the header link.
+4. Serve it with `serveStatic({ root: "./" })` on `/static/*`.
+5. Link it from the layout's `<head>` with `<link rel="stylesheet" href="/static/styles.css">`, next to the viewport meta tag.
 
 ## 6. Tests
 
-1. Create `src/app.test.tsx` with `app.request()` tests for each automatable check in `validation.md`: the HTML response for `/`, one header/main/footer in order, the page content, the title, the stylesheet link, serving `/static/styles.css` as CSS, and the 404.
+1. Create `src/app.test.tsx` with `app.request()` tests for each automatable check in `validation.md`: the HTML response for `/`, one header/main/footer in order, the page content, the title, the viewport meta tag, the stylesheet link, serving `/static/styles.css` as CSS, and the 404.
 2. Create one test file next to each component:
    - `Header.test.tsx`: renders a `<header>` with the site name linking to `/`.
    - `Main.test.tsx`: renders a `<main>` around its children.
    - `Footer.test.tsx`: renders a `<footer>` with the current year (fake timers) and the playful line.
    - `Layout.test.tsx`: default title, custom title, and children rendered inside `<main>`.
-3. Run `npm test` and confirm every test passes.
-4. Mark each check in `validation.md` that a test covers with 🧪 and the test that covers it.
+3. Create `src/styles.test.ts` checking that `static/styles.css` is mobile first (`min-width` queries only, at the shared breakpoints), keeps media inside its container, and gives the header link a 44px tap target.
+4. Run `npm test` and confirm every test passes.
+5. Check the home page at 320px, 768px, and 1280px wide in a browser's device mode.
+6. Mark each check in `validation.md` that a test covers with 🧪 and the test that covers it.
 
 ## 7. Specs and docs
 

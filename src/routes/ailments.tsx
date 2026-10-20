@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { NotFound } from "../components/NotFound.tsx";
 import { db } from "../db.ts";
 
 export const ailments = new Hono();
@@ -28,5 +29,34 @@ ailments.get("/", async (c) => {
       )}
     </>,
     { title: "Ailments · AgentClinic" },
+  );
+});
+
+ailments.get("/:slug", async (c) => {
+  const ailment = await db.ailment.findUnique({
+    where: { slug: c.req.param("slug") },
+  });
+
+  if (!ailment) {
+    c.status(404);
+    return c.render(
+      <NotFound
+        thing="ailment"
+        backHref="/ailments"
+        backLabel="See all ailments"
+      />,
+      { title: "Ailment not found · AgentClinic" },
+    );
+  }
+
+  return c.render(
+    <>
+      <p class="breadcrumb">
+        <a href="/ailments">← All ailments</a>
+      </p>
+      <h1>{ailment.name}</h1>
+      <p class="lead">{ailment.description}</p>
+    </>,
+    { title: `${ailment.name} · AgentClinic` },
   );
 });

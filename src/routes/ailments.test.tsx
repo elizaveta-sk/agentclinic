@@ -27,3 +27,28 @@ describe("GET /ailments", () => {
     expect(positions).toEqual([...positions].sort((a, b) => a - b));
   });
 });
+
+describe("GET /ailments/:slug", () => {
+  const ailment = ailments[0]!;
+
+  it("shows the ailment's name and description", async () => {
+    const { res, html } = await page(`/ailments/${ailment.slug}`);
+
+    expect(res.status).toBe(200);
+    expect(html).toContain(`<title>${ailment.name} · AgentClinic</title>`);
+    expect(html).toContain(`<h1>${ailment.name}</h1>`);
+    expect(html).toContain(ailment.description);
+    expect(html).toContain('<a href="/ailments">← All ailments</a>');
+  });
+
+  it("returns a friendly 404 for an unknown ailment", async () => {
+    const { res, html } = await page("/ailments/no-such-ailment");
+
+    expect(res.status).toBe(404);
+    expect(html).toContain("<title>Ailment not found · AgentClinic</title>");
+    expect(html).toContain("We couldn&#39;t find that ailment");
+    expect(html).toContain(
+      '<a class="button" href="/ailments">See all ailments</a>',
+    );
+  });
+});

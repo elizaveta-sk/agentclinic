@@ -18,11 +18,11 @@ In scope:
 - The existing home page content rendered through the layout
 - A hand-written CSS file, served as a static file and linked from the layout's `<head>`
 - Running the app with `tsx` (Node can't run JSX on its own)
+- Vitest tests for every automatable check in `validation.md`, run with `npm test`
 
 Out of scope (later phases):
 
 - `npm run dev` / `tsx watch` (Phase 3)
-- Tests (Phase 4, Vitest)
 - Tailwind (Phase 6). The hand-written CSS stays until then
 - Navigation links, other pages, a styled 404 page
 
@@ -31,7 +31,8 @@ Out of scope (later phases):
 | Decision | Choice | Why |
 |---|---|---|
 | Framework | `hono` + `@hono/node-server` | Per the tech stack |
-| App vs. server | `src/app.tsx` builds and exports the Hono app; `src/index.ts` only starts the server | Phase 4 can test `app.request()` without starting a server |
+| App vs. server | `src/app.tsx` builds and exports the Hono app; `src/index.ts` only starts the server | Tests call `app.request()` without starting a server |
+| Tests | Vitest: `src/app.test.tsx` for routes, plus one test file next to each component (`Header`, `Main`, `Footer`, `Layout`) | Per "Testing and validation" in the tech stack: each automatable check in `validation.md` has a test |
 | Components | `src/components/Layout.tsx`, `Header.tsx`, `Main.tsx`, `Footer.tsx`, one component per file | Each piece is small and easy to find; matches how later pages will be built |
 | Component typing | `FC` / `PropsWithChildren` from `hono/jsx`, imported with `import type` | Typed props; `verbatimModuleSyntax` requires type-only imports |
 | Layout wiring | `app.use(jsxRenderer(Layout))`, pages call `c.render(...)` | Every page gets the layout without repeating it |

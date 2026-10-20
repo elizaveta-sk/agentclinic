@@ -32,11 +32,21 @@ We use [Hono](https://hono.dev) on Node.js.
 | ORM | Prisma | Typed queries, migrations, and seeding |
 | Validation | Zod + `@hono/zod-validator` | One schema validates form posts and types the handler |
 | Running TypeScript | `tsx` (`npm start`), `tsx watch` (`npm run dev`) | Runs TypeScript and JSX directly, with no build step; Node's own type stripping can't handle JSX |
-| Unit / route tests | Vitest + `app.request()` | Fast, TypeScript-native, no running server needed |
+| Unit / route tests | Vitest + `app.request()`, run with `npm test` | Fast, TypeScript-native, no running server needed |
 | End-to-end tests | Playwright | Real-browser coverage of key flows |
 | Lint / format | ESLint + Prettier | Consistent code |
 | Package manager | npm | Default and widely known |
 | CI | GitHub Actions | Runs type-check, lint, and tests on every push |
+
+## Testing and validation
+
+Each feature's `validation.md` is backed by Vitest tests wherever a check can be automated.
+
+- **`npm test`** runs the whole suite once (`vitest run`). It must pass before a feature branch is merged.
+- **One check, one test.** For every automatable item in `validation.md` (status codes, headers, page structure, content), write a Vitest test that proves it. A feature is valid when `npm test` passes.
+- **Route tests use `app.request()`** against the app exported from `src/app.tsx`, so no server is started.
+- **Tests sit next to the code** they cover, named `*.test.ts` or `*.test.tsx` (e.g. `src/app.test.tsx`).
+- **Manual checks stay manual.** Items that need a human, such as how a page looks in a browser, stay as checkboxes in `validation.md`. Playwright takes over the key flows later.
 
 ## Browser support
 

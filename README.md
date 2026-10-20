@@ -15,6 +15,8 @@ npm install
 npm start
 ```
 
+Run the tests with `npm test`.
+
 Then open http://localhost:3000. Set `PORT` to use a different port.
 
 The mission, tech stack, and roadmap live in [`specs/`](specs/).

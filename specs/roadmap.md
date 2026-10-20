@@ -7,7 +7,7 @@ High-level implementation order, in very small phases. Each phase adds one thing
 - ✅ **Phase 1: Project init.** Create `package.json`, a strict `tsconfig.json`, a `.gitignore`, and a minimal AgentClinic home page served with `node:http`.
 - ✅ **Phase 2: Hello Hono.** Serve the home page with Hono instead of `node:http`, inside a main layout built from `Header`, `Main`, and `Footer` components (one file each), with a CSS file served from `/static` and linked from the layout.
 - **Phase 3: Dev server.** Add `tsx watch` and an `npm run dev` script.
-- **Phase 4: Vitest.** Add Vitest with one passing route test using `app.request()`.
+- ✅ **Phase 4: Vitest.** Back every automatable `validation.md` check with a Vitest test (routes via `app.request()`, one test file per component, project config), so `npm test` passes.
 - **Phase 5: Lint and format.** Add ESLint and Prettier with `npm run lint` and `npm run format` scripts.
 - **Phase 6: Tailwind build.** Add the Tailwind CLI build that compiles a stylesheet.
 - **Phase 7: Tailwind stylesheet.** Replace `static/styles.css` with the compiled Tailwind output.

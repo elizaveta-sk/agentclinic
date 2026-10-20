@@ -42,6 +42,8 @@ describe("package.json", () => {
     expect(pkg.scripts.postinstall).toBe("prisma generate");
     expect(pkg.scripts["db:generate"]).toBe("prisma generate");
     expect(pkg.scripts["db:migrate"]).toBe("prisma migrate dev");
+    expect(pkg.scripts.seed).toBe("prisma db seed");
+    expect(pkg.scripts.setup).toBe("prisma migrate deploy && prisma db seed");
   });
 });
 

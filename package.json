@@ -18,7 +18,9 @@
     "check": "npm run db:generate && npm run typecheck && npm run lint && npm run format:check && npm test",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "seed": "prisma db seed",
+    "setup": "prisma migrate deploy && prisma db seed"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

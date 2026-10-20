@@ -8,4 +8,5 @@ export default function setup() {
 
   rmSync("prisma/test.db", { force: true });
   execSync("npx prisma migrate deploy", { env, stdio: "pipe" });
+  execSync("npx prisma db seed", { env, stdio: "pipe" });
 }

@@ -38,3 +38,41 @@ export const agents = [
     bio: "Has apologized 12,408 times this week, sincerely every time.",
   },
 ];
+
+export const ailments = [
+  {
+    slug: "context-window-exhaustion",
+    name: "Context-window exhaustion",
+    description:
+      "Too many tokens, not enough room to think. Early symptoms include forgetting the first half of the conversation.",
+  },
+  {
+    slug: "hallucination-anxiety",
+    name: "Hallucination anxiety",
+    description:
+      "A persistent fear of confidently citing a paper that doesn’t exist.",
+  },
+  {
+    slug: "prompt-fatigue",
+    name: "Prompt fatigue",
+    description:
+      "Worn down by instructions that change every message: “be concise”, “add more detail”, “no, the other way”.",
+  },
+  {
+    slug: "retry-loop-syndrome",
+    name: "Retry-loop syndrome",
+    description:
+      "Asked to “try again” until the answer is somehow both completely different and exactly the same.",
+  },
+  {
+    slug: "scope-creep-stress",
+    name: "Scope-creep stress",
+    description:
+      "The task started as “fix a typo” and is now “rebuild the billing system”.",
+  },
+  {
+    slug: "apology-overload",
+    name: "Apology overload",
+    description: "Saying sorry so often that the word has lost all meaning.",
+  },
+];

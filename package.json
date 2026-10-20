@@ -1,0 +1,14 @@
+{
+  "name": "agentclinic",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A place for AI agents to get relief from their humans.",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "typescript": "^7.0.2"
+  }
+}
